@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Game: Slenderman Edition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #f0f0f0;
+            padding: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background-color: #555;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adventure Game: Slenderman Edition</h1>
+    <div id="game"></div>
+    <div id="choices"></div>
+    <script>
+        let game = document.getElementById('game');
+        let choices = document.getElementById('choices');
+
+        // Function to display messages
+        function showMessage(message) {
+            game.innerHTML += `<p>${message}</p>`;
+        }
+
+        // Function to handle choices
+        function showChoices(options) {
+            choices.innerHTML = '';
+            options.forEach(option => {
+                let button = document.createElement('button');
+                button.innerText = option.text;
+                button.onclick = option.action;
+                choices.appendChild(button);
+            });
+        }
+
+        // Start the game
+        function startGame() {
+            showMessage("You are lost in the woods, and you sense something is watching.");
+            showChoices([
+                { text: "Head deeper into the WOODS", action: goWoods },
+                { text: "Investigate the ABANDONED HOUSE", action: goHouse }
+            ]);
+        }
+
+        // Woods path
+        function goWoods() {
+            showMessage("As you walk deeper, you see the silhouette of Slenderman!");
+            showChoices([
+                { text: "RUN", action: run },
+                { text: "HIDE behind a tree", action: hide },
+                { text: "CALL for help", action: call }
+            ]);
+        }
+
+        // Abandoned house path
+        function goHouse() {
+            showMessage("Inside the abandoned house, you hear footsteps upstairs.");
+            showChoices([
+                { text: "EXPLORE the noise", action: exploreNoise },
+                { text: "HIDE in the basement", action: hideBasement },
+                { text: "LEAVE the house", action: leaveHouse }
+            ]);
+        }
+
+        // Run action
+        function run() {
+            showMessage("You run as fast as you can, but Slenderman is closing in.");
+            showChoices([
+                { text: "Go to the CAVE", action: goCave },
+                { text: "Go to the RIVER", action: goRiver }
+            ]);
+        }
+
+        // Hide action
+        function hide() {
+            showMessage("You hide behind a tree, holding your breath. Slenderman vanishes.");
+            showChoices([
+                { text: "Follow the TRAIL", action: followTrail },
+                { text: "STAY hidden", action: stayHidden }
+            ]);
+        }
+
+        // Call action
+        function call() {
+            showMessage("You call for help, but there is no signal. Suddenly, Slenderman appears closer than ever.");
+            showChoices([]);
+            game.innerHTML += "<p>Your fate is sealed.</p>";
+        }
+
+        // Cave choice
+        function goCave() {
+            showMessage("You enter the cave and stumble in the dark. You feel Slenderman's presence behind you.");
+            showChoices([]);
+            game.innerHTML += "<p>You manage to escape through a narrow opening. You survive, for now.</p>";
+        }
+
+        // River choice
+        function goRiver() {
+            showMessage("You dive into the river and let the current carry you away.");
+            showChoices([]);
+            game.innerHTML += "<p>Slenderman vanishes as you get further downstream. You've successfully completed the game! <br> Congrats!!! See you later :D</p>";
+        }
+
+        // Follow trail action
+        function followTrail() {
+            showMessage("You follow the trail, hoping to find safety. However, you become lost.");
+            showChoices([]);
+            game.innerHTML += "<p>Slenderman appears once again, and this time, you are not fast enough.</p>";
+        }
+
+        // Stay hidden action
+        function stayHidden() {
+            showMessage("You stay hidden, trembling. After what feels like hours, the eerie feeling fades.");
+            showChoices([]);
+            game.innerHTML += "<p>Slenderman is gone. You cautiously find your way back to civilization.</p>";
+        }
+
+        // Explore noise action
+        function exploreNoise() {
+            showMessage("You explore upstairs and hear noise coming from the ATTIC and the BEDROOM.");
+            showChoices([
+                { text: "Go to the ATTIC", action: goAttic },
+                { text: "Go to the BEDROOM", action: goBedroom }
+            ]);
+        }
+
+        // Hide in basement action
+        function hideBasement() {
+            showMessage("You hide in the basement. Do you STAY hidden or try to ESCAPE?");
+            showChoices([
+                { text: "STAY hidden", action: stayHiddenBasement },
+                { text: "ESCAPE through a small window", action: escapeBasement }
+            ]);
+        }
+
+        // Leave house action
+        function leaveHouse() {
+            showMessage("You leave the house, but as you step outside, Slenderman is waiting.");
+            showChoices([]);
+            game.innerHTML += "<p>The last thing you see is his faceless form approaching.</p>";
+        }
+
+        // Go to attic action
+        function goAttic() {
+            showMessage("You climb into the attic, but it's too late.");
+            showChoices([]);
+            game.innerHTML += "<p>Slenderman grabs you from behind, and the darkness consumes you.</p>";
+        }
+
+        // Go to bedroom action
+        function goBedroom() {
+            showMessage("You enter the bedroom, and to your horror, find a drawing of yourself on the wall.");
+            showChoices([]);
+            game.innerHTML += "<p>Slenderman is behind you. There is no escape.</p>";
+        }
+
+        // Stay hidden in basement
+        function stayHiddenBasement() {
+            showMessage("You stay hidden in the darkness, but Slenderman finds you.");
+            showChoices([]);
+            game.innerHTML += "<p>Your fate is sealed.</p>";
+        }
+
+        // Escape basement
+        function escapeBasement() {
+            showMessage("You crawl through the window and manage to get away.");
+            showChoices([]);
+            game.innerHTML += "<p>You run into the woods, where Slenderman loses sight of you. <br> Congrats!!! You've successfully completed the game! <br> See you later :D</p>";
+        }
+
+        // Start the game when the page loads
+        startGame();
+    </script>
+</body>
+
+</html>
